@@ -9,10 +9,10 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import man from '../assets/man.png'
 const Header = () => {
     return (
-        <div className='flex justify-evenly border-b-2 items-center  position-sticky mt-1'>
+        <div className='flex justify-evenly border-b-2 items-center sticky top-0 bg-white'>
         
             {/* Header left Icon and search bar */}
-            <div className='flex'>
+            <div className='flex -mt-4 '>
                 <img src={linkedin} alt="" className='h-9 rounded-md mr-1' />
                 {/* search icon and input field */}
                 <div className='flex p-2 rounded-md bg-blue-50 items-center'>
@@ -22,7 +22,7 @@ const Header = () => {
                
             </div>
             {/* Header right  */}
-            <div className='flex gap-6'>
+            <div className='flex gap-6 m-1'>
                 <HeaderOption title='Home' Icon = {HomeIcon}/>
                 <HeaderOption title='My network' Icon={SupervisorAccountIcon}/>
                 <HeaderOption title= 'Jobs' Icon={BusinessCenterIcon}/>
