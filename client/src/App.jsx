@@ -11,7 +11,7 @@ const App = () => {
       <Header />
 
       {/* App body */}
-      <div className="flex justify-evenly gap-6 w-full mt-6">
+      <div className="flex flex-col justify-evenly gap-6 w-full mt-9 md:flex-row">
 
         {/* Sidebar 1 */}
         <LeftSidebar/>
