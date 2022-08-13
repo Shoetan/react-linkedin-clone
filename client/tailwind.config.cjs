@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'roboto' : ['roboto', 'san-serif']
+        'Nunito' : ['Nunito', 'san-serif']
       }
     },
   },

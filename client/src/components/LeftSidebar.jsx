@@ -14,8 +14,9 @@ const LeftSidebar = () => {
 
                     <div className="flex flex-col  items-center -mt-8">
                             <img src={man} alt="" className=" h-24 rounded-full ring-2 ring-white "/>
-                            <h4 className='font-roboto'>Emmanuel Soetan</h4>
-                            <h4 className="font-roboto"> emmanuel.soetan@gmail.com</h4>
+                            <h4 className='font-Nunito
+                            '>Emmanuel Soetan</h4>
+                            <h4 className="font-Nunito"> emmanuel.soetan@gmail.com</h4>
                         </div> 
 
 

@@ -6,7 +6,7 @@ import RightSideBar from "./components/RightSidebar";
 const App = () => {
   return ( 
 
-    <div className="font-roboto">
+    <div className="font-Nunito">
    
       <Header />
 
