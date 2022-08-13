@@ -17,7 +17,7 @@ const Header = () => {
                 {/* search icon and input field */}
                 <div className='flex p-2 rounded-md bg-blue-50 items-center'>
                     <SearchIcon className='text-stone-600'/>
-                    <input type="text" className='outline-none font-roboto bg-transparent ' placeholder='search' />
+                    <input type="text" className='outline-none font-Nunito bg-transparent ' placeholder='search' />
                 </div>
                
             </div>
