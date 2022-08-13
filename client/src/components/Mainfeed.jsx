@@ -4,10 +4,11 @@ import ImageIcon from '@mui/icons-material/Image';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import NotesIcon from '@mui/icons-material/Notes';
+import Posts from './Post';
 
 const MainFeed = () => {
     return ( 
-        <div className=" w-4/12 h-full">  
+        <div className=" w-5/12 h-full">  
         {/* Input section */}      
          <div className=' bg-white rounded-lg p-2'>
 
@@ -21,9 +22,9 @@ const MainFeed = () => {
                 <InputOption title="Audio event" Icon={CalendarMonthIcon} color ="red"/>
                 <InputOption title="Write article" Icon={NotesIcon} color ="brown"/>
             </div>
-         
+         {/* Post section */}
         </div>
-
+                <Posts name= "Emmanuel Soetan" description="Software Dev"  photoUrl = {man} message = "Testing..." />
         <div>
            
         </div>
