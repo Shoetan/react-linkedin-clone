@@ -24,7 +24,7 @@ const MainFeed = () => {
             </div>
          {/* Post section */}
         </div>
-                <Posts name= "Emmanuel Soetan" description="Software Dev"  photoUrl = {man} message = "Testing..." />
+                <Posts name= "Emmanuel Soetan" description="Software Dev..."  photoUrl = {man} message = "Testing..." />
         <div>
            
         </div>

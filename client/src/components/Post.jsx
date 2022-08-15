@@ -1,4 +1,6 @@
+import {CommentBank, SendOutlined, ShareRounded, ThumbUp } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
+import InputOption from "./InputOption";
 
 const Posts = ({ name, description, message,  photoUrl}) => {
     return ( 
@@ -21,6 +23,16 @@ const Posts = ({ name, description, message,  photoUrl}) => {
            <div>
              <p className="break-normal" > {message} </p>
            </div>
+
+            {/* Post buttons */}
+            <div className="flex justify-evenly p-2">
+                <InputOption title="like" Icon = {ThumbUp} color ="gray" />
+                <InputOption title="comment" Icon = {CommentBank
+                } color ="gray" />
+                <InputOption title="share" Icon = {ShareRounded} color ="gray" />
+                <InputOption title="send" Icon = {SendOutlined} color ="gray" />
+            </div>
+           
             
         </div>
      );
