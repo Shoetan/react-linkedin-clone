@@ -5,7 +5,7 @@ import InputOption from "./InputOption";
 const Posts = ({ name, description, message,  photoUrl}) => {
     return ( 
 
-        <div className="font-Nunito bg-white mt-8 mb-8 rounded-md p-3">
+        <div className="font-Nunito bg-white mt-8 mb-8 rounded-md p-3 border border-gray-200">
            {/* Post header */}
            <div className="flex p-1 gap-4">
                 <Avatar src =  {photoUrl}  /> 

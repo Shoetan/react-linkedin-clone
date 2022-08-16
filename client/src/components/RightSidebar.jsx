@@ -1,6 +1,6 @@
 const RightSideBar = () => {
     return ( 
-        <div className='bg-white rounded-lg w-3/12 h-full font-Nunito'>
+        <div className='bg-white rounded-lg w-3/12 h-full font-Nunito border border-gray-200'>
             <p className="font-Nunito p-2">Linkedin News</p>
             <div className="">
                 <ul className="p-2 font-Nunito">
