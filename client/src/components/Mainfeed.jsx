@@ -5,16 +5,48 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import NotesIcon from '@mui/icons-material/Notes';
 import Posts from './Post';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { db } from '../logic/firebase'
+import firebase from 'firebase/compat/app'
+import {collection, addDoc } from 'firebase/firestore'
 
 const MainFeed = () => {
 
+    /* state to track change in input */
+
+    const [postInput, setPostInput] = useState('')
+
+    /* State to keep posts */
     const [posts, setPosts] = useState([])
+
+    useEffect(() => {},[])
+
+
+
 
     const sendPost = (event) => {
         if(event.key === 'Enter'){
-            console.log(posts);
-            setPosts('')
+            console.log(postInput);
+
+
+            /* Reference to the the database in cloud firestore and the collection name */
+            const dbRef = collection(db, "post")
+
+            /* Data to be sent to the database on cloud firestore using and object */
+            const data = {
+                name : "Emmanuel",
+                message : postInput,
+                description : "Software Dev",
+                photoUrl: ""
+            }
+
+            addDoc  (dbRef,data)
+            .then(() =>{
+                console.log("Successfully added")
+            })
+            .catch((err) =>{ console.log(err.message) })
+           
+              setPostInput('')
         }
     }
 
@@ -30,9 +62,9 @@ const MainFeed = () => {
             <div className="flex">
                 <img src={man} alt="" className="h-16" />
                 <input type="text" className='w-full rounded-full font-roboto border-2 m-2 p-3 outline-none' placeholder='start a post'
-                    onChange={ (e) => {setPosts(e.target.value)}}
+                    onChange={ (e) => {setPostInput(e.target.value)}}
                     onKeyDown={sendPost}
-                    value={posts}
+                    value={postInput}
                 />
             </div>
             <div className="flex justify-evenly"  >
@@ -43,11 +75,12 @@ const MainFeed = () => {
             </div>
         
         </div>
-               {/*  {posts.map((post)=>{
+                {posts.map((post)=>{
                     <Posts/>
-                })} */}
+                })}
                 <Posts name= "Emmanuel Soetan" description="Software Dev..."  photoUrl = {man} message = "Testing..." />
-     
+
+                
         
             
         </div>
