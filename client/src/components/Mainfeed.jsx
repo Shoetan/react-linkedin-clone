@@ -8,7 +8,7 @@ import Posts from './Post';
 import { useEffect, useState } from 'react';
 import { db } from '../logic/firebase'
 import firebase from 'firebase/compat/app'
-import {collection, addDoc } from 'firebase/firestore'
+import {collection, addDoc, onSnapshot } from 'firebase/firestore'
 
 const MainFeed = () => {
 
@@ -17,30 +17,43 @@ const MainFeed = () => {
     const [postInput, setPostInput] = useState('')
 
     /* State to keep posts */
+
     const [posts, setPosts] = useState([])
 
-    useEffect(() => {},[])
+  
+    
+     /* Reference to the the database in cloud firestore and the collection name */
+     const databaseReference = collection(db, "post")
 
 
+    useEffect( () => {
+        onSnapshot(databaseReference, (snapshot) => {
+          //let identy =[]
+          snapshot.docs.map((doc) => {
+            setPosts({id:doc.id, data:doc.data()})
+          })
+          console.log(posts)
+        }) 
 
+    }
+    ,[])
 
     const sendPost = (event) => {
         if(event.key === 'Enter'){
             console.log(postInput);
 
-
-            /* Reference to the the database in cloud firestore and the collection name */
-            const dbRef = collection(db, "post")
+   
 
             /* Data to be sent to the database on cloud firestore using and object */
             const data = {
-                name : "Emmanuel",
+                name : "Emmanuel Soetan",
                 message : postInput,
                 description : "Software Dev",
-                photoUrl: ""
+                photoUrl: "",
+                timestamp : ""
             }
 
-            addDoc  (dbRef,data)
+            addDoc  (databaseReference,data)
             .then(() =>{
                 console.log("Successfully added")
             })
@@ -51,8 +64,6 @@ const MainFeed = () => {
     }
 
  
-
-
 
     return ( 
         <div className=" w-5/12 h-full">  
@@ -75,10 +86,15 @@ const MainFeed = () => {
             </div>
         
         </div>
-                {posts.map((post)=>{
-                    <Posts/>
-                })}
+             {/*    {posts.map(({id, data:{name, description,message}} )=>{
+                   
+                   
+              
+                })} */}
+
+
                 <Posts name= "Emmanuel Soetan" description="Software Dev..."  photoUrl = {man} message = "Testing..." />
+
 
                 
         
