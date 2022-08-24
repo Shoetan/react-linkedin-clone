@@ -28,11 +28,23 @@ const MainFeed = () => {
      const databaseReference = collection(db, "post")
 
 
+
+
+
      useEffect(()=>{
 
         onSnapshot(databaseReference,(snapshot) =>{
 
+
         let data  = snapshot.docs.map( (doc) => 
+
+
+        /* Returns and object in this manner 
+                    {
+                        id: "",
+                        data:{}
+                    } 
+        */
            {
             return{
 
@@ -44,17 +56,16 @@ const MainFeed = () => {
 
         setPosts(data)
            
-        })
-
-       
-
-        
+        })   
         
      }
      ,[])
 
 
     const sendPost = (event) => {
+
+
+        /* if the enter key is pressed on the keyboard run the below function */
         if(event.key === 'Enter'){
              
             /* Data to be sent to the database on cloud firestore using and object */
@@ -65,7 +76,7 @@ const MainFeed = () => {
                 photoUrl: "",
                 timestamp : ""
             }
-
+            /* firebase function to add data to the cloud firestore */
             addDoc  (databaseReference,data)
             .then(() =>{
                 console.log("Successfully added")
@@ -81,7 +92,6 @@ const MainFeed = () => {
     return ( 
         <div className=" w-5/12 h-full">  
 
-        {console.log(posts)}
         {/* Input section */}      
          <div className=' bg-white rounded-lg p-2 border border-gray-200'>
 
@@ -101,22 +111,22 @@ const MainFeed = () => {
                 <InputOption title="Write article" Icon={NotesIcon} color ="brown"/>
             </div>
 
-            
-        
         </div>
-        
-   {/*      {posts.map(({id, data:{name,message,description,timestamp,photoUrl}}) =>{
-            <Posts
-                key = {id}
-                name = {name}
-                message ={message}
-                description = {description}
-                timestamp = {timestamp}
-                photoUrl = {photoUrl}
-            />
-        })} */}
 
-        {/* <Posts name= "Emmanuel Soetan" description="Software Dev..."  photoUrl = {man} message = "Testing..." /> */}
+
+        {/* Post body section */}
+
+        {  posts.map(({id, data:{name, description,message,photoUrl,timestamp}}) =>{
+
+            return <Posts 
+                name={name}
+                description={description}
+                timestamp={timestamp}
+                photoUrl={photoUrl}
+                message={message}
+            />
+
+        }) }
 
   
         </div>
