@@ -8,7 +8,7 @@ import Posts from './Post';
 import { useEffect, useState } from 'react';
 import { db } from '../logic/firebase'
 import firebase from 'firebase/compat/app'
-import {collection, addDoc, onSnapshot } from 'firebase/firestore'
+import {collection, addDoc, onSnapshot,serverTimestamp,query, orderBy } from 'firebase/firestore'
 
 const MainFeed = () => {
 
@@ -33,28 +33,29 @@ const MainFeed = () => {
 
      useEffect(()=>{
 
-        onSnapshot(databaseReference,(snapshot) =>{
+        const q = query(databaseReference, orderBy("timestamp","desc"))
+
+        onSnapshot(q,(snapshot) =>{
+
+                let data  = snapshot.docs.map( (doc) => 
 
 
-        let data  = snapshot.docs.map( (doc) => 
+                /* Returns and object in this manner 
+                            {
+                                id: "",
+                                data:{}
+                            } 
+                */
+                {
+                    return{
 
+                        id:doc.id, data : doc.data()
+                    }
+                }
+                
+                ) 
 
-        /* Returns and object in this manner 
-                    {
-                        id: "",
-                        data:{}
-                    } 
-        */
-           {
-            return{
-
-                id:doc.id, data : doc.data()
-            }
-           }
-         
-        ) 
-
-        setPosts(data)
+                setPosts(data)
            
         })   
         
@@ -74,7 +75,7 @@ const MainFeed = () => {
                 message : postInput,
                 description : "Software Dev",
                 photoUrl: "",
-                timestamp : ""
+                timestamp :serverTimestamp()
             }
             /* firebase function to add data to the cloud firestore */
             addDoc  (databaseReference,data)
@@ -119,6 +120,7 @@ const MainFeed = () => {
         {  posts.map(({id, data:{name, description,message,photoUrl,timestamp}}) =>{
 
             return <Posts 
+                key={id}
                 name={name}
                 description={description}
                 timestamp={timestamp}
