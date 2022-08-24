@@ -20,30 +20,43 @@ const MainFeed = () => {
 
     const [posts, setPosts] = useState([])
 
+    
+
   
     
      /* Reference to the the database in cloud firestore and the collection name */
      const databaseReference = collection(db, "post")
 
 
-    useEffect( () => {
-        onSnapshot(databaseReference, (snapshot) => {
-          //let identy =[]
-          snapshot.docs.map((doc) => {
-            setPosts({id:doc.id, data:doc.data()})
-          })
-          console.log(posts)
-        }) 
+     useEffect(()=>{
 
-    }
-    ,[])
+        onSnapshot(databaseReference,(snapshot) =>{
+
+        let data  = snapshot.docs.map( (doc) => 
+           {
+            return{
+
+                id:doc.id, data : doc.data()
+            }
+           }
+         
+        ) 
+
+        setPosts(data)
+           
+        })
+
+       
+
+        
+        
+     }
+     ,[])
+
 
     const sendPost = (event) => {
         if(event.key === 'Enter'){
-            console.log(postInput);
-
-   
-
+             
             /* Data to be sent to the database on cloud firestore using and object */
             const data = {
                 name : "Emmanuel Soetan",
@@ -67,6 +80,8 @@ const MainFeed = () => {
 
     return ( 
         <div className=" w-5/12 h-full">  
+
+        {console.log(posts)}
         {/* Input section */}      
          <div className=' bg-white rounded-lg p-2 border border-gray-200'>
 
@@ -78,27 +93,32 @@ const MainFeed = () => {
                     value={postInput}
                 />
             </div>
+
             <div className="flex justify-evenly"  >
                 <InputOption title="photo" Icon={ImageIcon} color ="blue"/>
                 <InputOption title="video" Icon={YouTubeIcon} color ="green"/>
                 <InputOption title="Audio event" Icon={CalendarMonthIcon} color ="red"/>
                 <InputOption title="Write article" Icon={NotesIcon} color ="brown"/>
             </div>
+
+            
         
         </div>
-             {/*    {posts.map(({id, data:{name, description,message}} )=>{
-                   
-                   
-              
-                })} */}
-
-
-                <Posts name= "Emmanuel Soetan" description="Software Dev..."  photoUrl = {man} message = "Testing..." />
-
-
-                
         
-            
+   {/*      {posts.map(({id, data:{name,message,description,timestamp,photoUrl}}) =>{
+            <Posts
+                key = {id}
+                name = {name}
+                message ={message}
+                description = {description}
+                timestamp = {timestamp}
+                photoUrl = {photoUrl}
+            />
+        })} */}
+
+        {/* <Posts name= "Emmanuel Soetan" description="Software Dev..."  photoUrl = {man} message = "Testing..." /> */}
+
+  
         </div>
      );
 }
