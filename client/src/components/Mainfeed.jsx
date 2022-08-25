@@ -7,7 +7,6 @@ import NotesIcon from '@mui/icons-material/Notes';
 import Posts from './Post';
 import { useEffect, useState } from 'react';
 import { db } from '../logic/firebase'
-import firebase from 'firebase/compat/app'
 import {collection, addDoc, onSnapshot,serverTimestamp,query, orderBy } from 'firebase/firestore'
 
 const MainFeed = () => {

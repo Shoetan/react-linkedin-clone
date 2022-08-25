@@ -1,5 +1,5 @@
 import SearchIcon from '@mui/icons-material/Search';
-import linkedin from '../assets/linkedin.svg'
+import Linkedin_icon from '../assets/Linkedin_icon.png'
 import HeaderOption from './HeaderOption';
 import HomeIcon from '@mui/icons-material/Home';
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
@@ -13,7 +13,7 @@ const Header = () => {
         
             {/* Header left Icon and search bar */}
             <div className='flex -mt-4 '>
-                <img src={linkedin} alt="" className='h-9 rounded-md mr-1' />
+                <img src={Linkedin_icon} alt="" className='h-9 rounded-md mr-1' />
                 {/* search icon and input field */}
                 <div className='flex p-2 rounded-md bg-blue-50 items-center'>
                     <SearchIcon className='text-stone-600'/>
