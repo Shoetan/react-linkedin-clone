@@ -18,7 +18,7 @@ const App = () => {
    
       <Header />
 
-      {user ? <Login/> : 
+      {!user ? <Login/> : 
           <div className="flex flex-col justify-evenly w-full mt-9 md:flex-row">
 
             
