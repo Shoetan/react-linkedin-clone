@@ -15,6 +15,10 @@ const Login = () => {
     const [userProfilePic, setUserProfilePic] = useState('')
     const dispatch = useDispatch()
 
+    const signIn =() =>{
+        
+    }
+
     const register = async () => {
         /* once the user is created the updateProfile function from firebase will update the displayname and the photourl of the current created user */
        try {
@@ -41,7 +45,7 @@ const Login = () => {
     return (
         <div className="flex flex-col justify-center items-center">
             <div>
-                    <img src={linkedin} alt="Linkedin company banner" className="h-72" />
+                    <img src={linkedin} alt="Linkedin company banner" className="h-72" />  
             </div>
             <div className="flex flex-col">
 
@@ -69,7 +73,7 @@ const Login = () => {
                      onChange ={(e) =>{setPassword(e.target.value)}} 
                      value = {userPassword}   />
 
-                    <button className="bg-blue-700 text-white p-2 rounded-md mb-2 hover:bg-blue-600">Sign In</button>
+                    <button onClick = {signIn} className="bg-blue-700 text-white p-2 rounded-md mb-2 hover:bg-blue-600">Sign In</button>
 
                     <p className="text-center">Not a member? <span className="text-blue-700 cursor-pointer" onClick={register}>Register Now</span></p>
                     
