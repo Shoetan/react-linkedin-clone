@@ -7,7 +7,21 @@ import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import man from '../assets/man.png'
+import { useDispatch } from 'react-redux';
+import { auth  } from '../logic/firebase' 
+import { signOut } from 'firebase/auth';
+import { logout } from '../features/userSlice';
+
 const Header = () => {
+
+    const dispatch = useDispatch()
+
+    //Log out function to log out user from the app
+    const logOutOfApp = () => {
+            dispatch(logout())
+            signOut(auth)
+    }
+    
     return (
         <div className='flex justify-evenly border-b-2 items-center sticky top-0 bg-white'>
         
@@ -28,7 +42,7 @@ const Header = () => {
                 <HeaderOption title= 'Jobs' Icon={BusinessCenterIcon}/>
                 <HeaderOption title = 'Messaging' Icon={MailIcon}/>
                 <HeaderOption title = 'Notifications' Icon={NotificationsIcon}/>
-                <HeaderOption title ='me' avatar = {man}/>
+                <HeaderOption title ='me' avatar = {man} onClick={logOutOfApp}/>
             </div>
         </div>
       );

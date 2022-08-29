@@ -5,13 +5,13 @@
 */
 import { Avatar } from "@mui/material";
 
-const HeaderOption = ({Icon, title, avatar}) => {
+const HeaderOption = ({Icon, title, avatar, onClick}) => {
     return ( 
-        <div className="flex items-center flex-col cursor-pointer text-gray-500 hover:text-stone-900">
+        <div onClick = {onClick} className="flex items-center flex-col cursor-pointer text-gray-500 hover:text-stone-900">
             {Icon && <Icon />}
 
             {avatar && (
-                <Avatar className='' src={avatar}/>
+                <Avatar src={avatar} />
             )}
             <h3>{title}</h3>
         </div>

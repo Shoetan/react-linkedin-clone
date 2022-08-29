@@ -15,17 +15,13 @@ const App = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    onAuthStateChanged(auth, (userCredentials) =>{
-      if(userCredentials){
-        //user is logged in
-
-        //console.log(userCredentials.email);
-
+    onAuthStateChanged(auth, (user) =>{
+      if(user){
         dispatch(login({
-          email : userCredentials.email,
-          uid : userCredentials.uid,
-          displayName : userCredentials.displayName,
-          photoUrl : userCredentials.photoURL
+          email : user.email,
+          uid : user.uid,
+          displayName : user.displayName,
+          photoUrl : user.photoURL
         }))
     
       }
