@@ -1,7 +1,7 @@
 import linkedin from '../assets/linkedin.png'
 import { useState } from 'react'
 import {auth} from '../logic/firebase'
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { useDispatch } from 'react-redux'
 import { login } from '../features/userSlice'
 
@@ -15,8 +15,27 @@ const Login = () => {
     const [userProfilePic, setUserProfilePic] = useState('')
     const dispatch = useDispatch()
 
-    const signIn =() =>{
-        
+    const signIn =async () =>{
+            try {
+
+                if(!userEmail || !userPassword)
+                {
+                    alert('Please enter a valid email and password')
+                }
+
+                let userCredentials = await (signInWithEmailAndPassword(auth, userEmail, userPassword))
+
+                dispatch(login({
+                    email:userCredentials.user.email,
+                    uid : userCredentials.user.uid,
+                    displayName : userName,
+                    photoUrl : userProfilePic
+                }))
+                
+            } 
+            catch (error) {
+                
+            }
     }
 
     const register = async () => {
