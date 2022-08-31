@@ -26,7 +26,8 @@ const App = () => {
     
       }
       else {
-        //user is not logged in or logged out
+
+        //user is logged out
 
         dispatch(logout())
       }
@@ -42,6 +43,8 @@ const App = () => {
     <div className="font-Nunito">
    
       <Header />
+
+      {console.log(user)}
 
       {!user ? <Login/> : 
           <div className="flex flex-col justify-evenly w-full mt-9 md:flex-row">
