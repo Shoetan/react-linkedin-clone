@@ -7,13 +7,14 @@ import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import man from '../assets/man.png'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { auth  } from '../logic/firebase' 
 import { signOut } from 'firebase/auth';
-import { logout } from '../features/userSlice';
+import userSlice, { logout, selectUser } from '../features/userSlice';
 
 const Header = () => {
 
+    /* Import the gun used on firing actions from redux */
     const dispatch = useDispatch()
 
     //Log out function to log out user from the app
@@ -42,7 +43,7 @@ const Header = () => {
                 <HeaderOption title= 'Jobs' Icon={BusinessCenterIcon}/>
                 <HeaderOption title = 'Messaging' Icon={MailIcon}/>
                 <HeaderOption title = 'Notifications' Icon={NotificationsIcon}/>
-                <HeaderOption title ='me' avatar = {man} onClick={logOutOfApp}/>
+                <HeaderOption title ='Me' avatar = {true} onClick={logOutOfApp}/>
             </div>
         </div>
       );

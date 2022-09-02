@@ -1,21 +1,29 @@
 
-import man from '../assets/man.png'
+import { Avatar } from '@mui/material';
+import { useSelector } from 'react-redux';
 import texture from '../assets/texture.jpg'
+import { selectUser } from '../features/userSlice';
 
 const LeftSidebar = () => {
+
+const user = useSelector(selectUser)
+
     return (
       /* LeftSidebar container */
         <div className='w-2/12 h-full bg-white rounded-xl'>
          {/* Banner */} 
-        
+         
          <img src={texture} className="object-cover w-full h-20 rounded-t-lg"/> 
          
            <div className="flex flex-col gap-2" >
 
                     <div className="flex flex-col  items-center -mt-8">
-                            <img src={man} alt="" className=" h-24 rounded-full ring-2 ring-white "/>
-                            <h5 className='font-Nunito text-xl font-bold'   >Emmanuel Soetan</h5>
-                            <h3 className="font-Nunito"> emmanuel.soetan@gmail.com</h3>
+                            {/* <img src={user.photoUrl} alt="" className=" h-24 rounded-full ring-2 ring-white "/> */}
+
+                            <Avatar className='h-24 rounded-full ring-2 ring-white'>
+                            </Avatar>
+                            <h5 className='font-Nunito text-xl font-bold'>{user.displayName}</h5>
+                            <h3 className="font-Nunito">{user.email}</h3>
                         </div> 
 
 
