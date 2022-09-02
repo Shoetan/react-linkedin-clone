@@ -15,7 +15,7 @@ const Login = () => {
     const [userProfilePic, setUserProfilePic] = useState('')
     const dispatch = useDispatch()
 
-    const signIn =async () =>{
+    const signIn = async () =>{
             try {
 
                 if(!userEmail || !userPassword)

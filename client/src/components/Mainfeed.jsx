@@ -1,4 +1,4 @@
-import man from '../assets/man.png' 
+
 import InputOption from '../components/InputOption';
 import ImageIcon from '@mui/icons-material/Image';
 import YouTubeIcon from '@mui/icons-material/YouTube';
@@ -8,8 +8,16 @@ import Posts from './Post';
 import { useEffect, useState } from 'react';
 import { db } from '../logic/firebase'
 import {collection, addDoc, onSnapshot,serverTimestamp,query, orderBy } from 'firebase/firestore'
+import { useSelector } from 'react-redux';
+import { selectUser } from '../features/userSlice';
+import { Avatar } from '@mui/material';
 
 const MainFeed = () => {
+
+
+    /* Import user from redux */
+
+    const user = useSelector(selectUser)
 
     /* state to track change in input */
 
@@ -25,10 +33,6 @@ const MainFeed = () => {
     
      /* Reference to the the database in cloud firestore and the collection name */
      const databaseReference = collection(db, "post")
-
-
-
-
 
      useEffect(()=>{
 
@@ -70,10 +74,10 @@ const MainFeed = () => {
              
             /* Data to be sent to the database on cloud firestore using and object */
             const data = {
-                name : "Emmanuel Soetan",
+                name : user.displayName,
                 message : postInput,
-                description : "Software Dev",
-                photoUrl: "",
+                description : user.email,
+                photoUrl: user.photoUrl,
                 timestamp :serverTimestamp()
             }
             /* firebase function to add data to the cloud firestore */
@@ -96,7 +100,7 @@ const MainFeed = () => {
          <div className=' bg-white rounded-lg p-2 border border-gray-200'>
 
             <div className="flex">
-                <img src={man} alt="" className="h-16" />
+                <Avatar className="h-16"></Avatar>
                 <input type="text" className='w-full rounded-full font-roboto border-2 m-2 p-3 outline-none' placeholder='start a post'
                     onChange={ (e) => {setPostInput(e.target.value)}}
                     onKeyDown={sendPost}

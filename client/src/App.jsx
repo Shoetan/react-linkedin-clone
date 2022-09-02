@@ -12,6 +12,7 @@ import { onAuthStateChanged } from "firebase/auth";
 const App = () => {
 
   const user = useSelector(selectUser)
+  
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -44,7 +45,7 @@ const App = () => {
    
       <Header />
 
-      {console.log(user)}
+      
 
       {!user ? <Login/> : 
           <div className="flex flex-col justify-evenly w-full mt-9 md:flex-row">
